@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <PlatformTarget>x86</PlatformTarget>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CB326AFE-89D1-4A2A-AE23-719FD1FAB794}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Delta.Console</RootNamespace>
+    <AssemblyName>Delta.Console</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <WarningLevel>4</WarningLevel>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Delta.ContentSystem, Version=0.9.5.19, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\deltaengine\Dlls\Delta.ContentSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Delta.ContentSystem.Rendering, Version=0.9.5.19, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\deltaengine\Dlls\Delta.ContentSystem.Rendering.dll</HintPath>
+    </Reference>
+    <Reference Include="Delta.ContentSystem.UserInterfaces">
+      <HintPath>..\..\deltaengine\Dlls\Delta.ContentSystem.UserInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Delta.InputSystem, Version=0.9.5.19, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\deltaengine\Dlls\Delta.InputSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Delta.Rendering, Version=0.9.5.19, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\deltaengine\Dlls\Delta.Rendering.dll</HintPath>
+    </Reference>
+    <Reference Include="Delta.Rendering.Basics">
+      <HintPath>..\..\deltaengine\Dlls\Delta.Rendering.Basics.dll</HintPath>
+    </Reference>
+    <Reference Include="Delta.Scenes">
+      <HintPath>..\..\deltaengine\Dlls\Delta.Scenes.dll</HintPath>
+    </Reference>
+    <Reference Include="Delta.Scenes.UserInterfaces">
+      <HintPath>..\..\deltaengine\Dlls\Delta.Scenes.UserInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Delta.Utilities">
+      <HintPath>$(DeltaEnginePath)\Dlls\Delta.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Delta.Engine">
+      <HintPath>$(DeltaEnginePath)\Dlls\Delta.Engine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommandManager.cs" />
+    <Compile Include="Console.cs" />
+    <Compile Include="ConsoleCommandAttribute.cs" />
+    <Compile Include="IPlottable.cs" />
+    <Compile Include="Module.cs" />
+    <Compile Include="GraphManager.cs" />
+    <Compile Include="PlotManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

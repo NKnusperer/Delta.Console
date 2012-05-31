@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delta.Console", "Delta.Console\Delta.Console.csproj", "{CB326AFE-89D1-4A2A-AE23-719FD1FAB794}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGame", "TestGame\TestGame.csproj", "{C6E6CE3C-3B47-4A3A-A327-06EC3C2BBA64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CB326AFE-89D1-4A2A-AE23-719FD1FAB794}.Debug|x86.ActiveCfg = Debug|x86
+		{CB326AFE-89D1-4A2A-AE23-719FD1FAB794}.Debug|x86.Build.0 = Debug|x86
+		{CB326AFE-89D1-4A2A-AE23-719FD1FAB794}.Release|x86.ActiveCfg = Release|x86
+		{CB326AFE-89D1-4A2A-AE23-719FD1FAB794}.Release|x86.Build.0 = Release|x86
+		{C6E6CE3C-3B47-4A3A-A327-06EC3C2BBA64}.Debug|x86.ActiveCfg = Debug|x86
+		{C6E6CE3C-3B47-4A3A-A327-06EC3C2BBA64}.Debug|x86.Build.0 = Debug|x86
+		{C6E6CE3C-3B47-4A3A-A327-06EC3C2BBA64}.Release|x86.ActiveCfg = Release|x86
+		{C6E6CE3C-3B47-4A3A-A327-06EC3C2BBA64}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
