@@ -118,6 +118,10 @@ namespace TestGame
             module.AddPlotToGraph(new TestPlotFps());
             // Add the test method to the console
             module.AddCmdToConsole(typeof(Game).GetMethod("Add"), null);
+            module.AddCmdToConsole(typeof(Game).GetMethod("Add2"), null);
+            module.AddCmdToConsole(typeof(Game).GetMethod("Add3"), null);
+            module.AddCmdToConsole(typeof(Game).GetMethod("Add4"), null);
+
 
         }
         #endregion
@@ -129,6 +133,24 @@ namespace TestGame
             return a + b;
         }
         #endregion
+
+        [ConsoleCommand("Render.AddNumer")]
+        public float Add2(float a, float b)
+        {
+            return a + b;
+        }
+
+        [ConsoleCommand("Render.AddInt")]
+        public float Add3(float a, float b)
+        {
+            return a + b;
+        }
+
+        [ConsoleCommand("Render.FloatAdd")]
+        public float Add4(float a, float b)
+        {
+            return a + b;
+        }
 
         #region SetupPyramid
         /// <summary>
