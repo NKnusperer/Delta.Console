@@ -1,6 +1,7 @@
 ﻿using Delta.Engine.Dynamic;
 using Delta.Engine;
 using System.Reflection;
+using Delta.InputSystem;
 
 namespace Delta.Console
 {
@@ -29,11 +30,12 @@ namespace Delta.Console
         /// Constructor for this module, will be child of the Application module to
         /// be executed as part of the Application.Run.
         /// </summary>
-        public Module()
+        /// <param name="bindConsole">The button to open and close the console</param>
+        public Module(InputButton bindConsoleButton)
             : base("Delta.Console", typeof(Application))
         {
             // Initialize
-            console = new Delta.Console.Console();
+            console = new Delta.Console.Console(bindConsoleButton);
             graph = new GraphManager();
 
             // Add command to the console to enable or disable the graph

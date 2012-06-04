@@ -81,7 +81,7 @@ namespace Delta.Console
         #endregion
 
         #region ctor
-        public Console()
+        public Console(InputButton bindConsoleButton)
         {
             // Set the Material2DColored
             consoleBackground = new Material2DColored(new Color(new Color(0, 167, 255), 0.5f));
@@ -109,7 +109,7 @@ namespace Delta.Console
             cmdManager = new CommandManager();
 
             // Register input commands
-            registerInputCommands();
+            registerInputCommands(bindConsoleButton);
 
             // Recalculate the dimension only when the window size has been changed
 
@@ -126,11 +126,11 @@ namespace Delta.Console
         #endregion
 
         #region registerInputCommands
-        private void registerInputCommands()
+        private void registerInputCommands(InputButton bindConsoleButton)
         {
             // Show or hide the console
             Input.Commands["Console"]
-                .AddTrigger(new CommandTrigger { Button = InputButton.Pipe, State = InputState.Pressed })
+                .AddTrigger(new CommandTrigger { Button = bindConsoleButton, State = InputState.Pressed })
                 .Add(this, command =>
                 {
                     // Invert value
@@ -176,13 +176,16 @@ namespace Delta.Console
                 .AddTrigger(new CommandTrigger { Button = InputButton.CursorDown, State = InputState.Pressed })
                 .Add(this, command =>
                 {
-                    if (command.Button == InputButton.CursorUp)
+                    if (showConsole)
                     {
-                        moveHistoryUp();
-                    }
-                    else
-                    {
-                        moveHistoryDown();
+                        if (command.Button == InputButton.CursorUp)
+                        {
+                            moveHistoryUp();
+                        }
+                        else
+                        {
+                            moveHistoryDown();
+                        }
                     }
                 });
         }

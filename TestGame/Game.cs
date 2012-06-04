@@ -112,45 +112,24 @@ namespace TestGame
             });
 
             // Load the module
-            var module = Factory.Create<Delta.Console.Module>();
+            var module = Factory.Create<Delta.Console.Module>(new object[] { InputButton.Pipe });
             // Add our two test plots to the graph
             module.AddPlotToGraph(new TestPlotCpu());
             module.AddPlotToGraph(new TestPlotFps());
             // Add the test methods to the console
-            module.AddCmdToConsole(typeof(Game).GetMethod("Add"), null);
-            module.AddCmdToConsole(typeof(Game).GetMethod("Add2"), null);
-            module.AddCmdToConsole(typeof(Game).GetMethod("Add3"), null);
-            module.AddCmdToConsole(typeof(Game).GetMethod("Add4"), null);
+            module.AddCmdToConsole(typeof(Game).GetMethod("AddFloats"), null);
 
 
         }
         #endregion
 
-        #region Add
-        [ConsoleCommand("Render.Add")]
-        public float Add (float a, float b)
+        #region AddFloats
+        [ConsoleCommand("Render.AddFloats")]
+        public float AddFloats(float a, float b)
         {
             return a + b;
         }
         #endregion
-
-        [ConsoleCommand("Render.AddNumer")]
-        public float Add2(float a, float b)
-        {
-            return a + b;
-        }
-
-        [ConsoleCommand("Render.AddInt")]
-        public float Add3(float a, float b)
-        {
-            return a + b;
-        }
-
-        [ConsoleCommand("Render.FloatAdd")]
-        public float Add4(float a, float b)
-        {
-            return a + b;
-        }
 
         #region SetupPyramid
         /// <summary>
@@ -226,8 +205,6 @@ namespace TestGame
             // overlapping and boxes going slightly into the ground).
             Matrix groundTransform = Matrix.CreateTranslation(0.0f, 0.0f, -0.01f);
             plane.Draw(ref groundTransform);
-
-            Font.DrawTopLeftInformation(Time.Fps.ToString());
         }
         #endregion
     }
