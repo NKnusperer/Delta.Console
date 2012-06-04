@@ -116,7 +116,7 @@ namespace TestGame
             // Add our two test plots to the graph
             module.AddPlotToGraph(new TestPlotCpu());
             module.AddPlotToGraph(new TestPlotFps());
-            // Add the test method to the console
+            // Add the test methods to the console
             module.AddCmdToConsole(typeof(Game).GetMethod("Add"), null);
             module.AddCmdToConsole(typeof(Game).GetMethod("Add2"), null);
             module.AddCmdToConsole(typeof(Game).GetMethod("Add3"), null);
