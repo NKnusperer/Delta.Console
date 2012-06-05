@@ -29,6 +29,10 @@ namespace Delta.Console
         /// </summary>
         private Rectangle consoleDimension;
         /// <summary>
+        /// The space between the screenspace and the console
+        /// </summary>
+        private Margin consoleMargin;
+        /// <summary>
         /// The console color or material
         /// </summary>
         private Material2DColored consoleBackground;
@@ -40,6 +44,10 @@ namespace Delta.Console
         /// A list of previous typed commands and output to render
         /// </summary>
         private List<string> history;
+        /// <summary>
+        /// The max. number of lines that will be displayed befor the oldest entry will be deleted
+        /// </summary>
+        private int maxNumberOfLines;
         /// <summary>
         /// A stacklist of previous typed commands to step for-/backward
         /// </summary>
@@ -81,12 +89,16 @@ namespace Delta.Console
         #endregion
 
         #region ctor
-        public Console(InputButton bindConsoleButton)
+        public Console(InputButton bindConsoleButton, Margin consoleMargin, Material2DColored consoleBackground, Color consoleFontColor, int maxNumberOfLines)
         {
             // Set the Material2DColored
-            consoleBackground = new Material2DColored(new Color(new Color(0, 167, 255), 0.5f));
+            this.consoleBackground = consoleBackground;
             // The console should be topmost
-            consoleBackground.DrawLayer = Delta.ContentSystem.Rendering.RenderLayer.Front;
+            this.consoleBackground.DrawLayer = Delta.ContentSystem.Rendering.RenderLayer.Front;
+
+            // Set the margin and max. line count
+            this.consoleMargin = consoleMargin;
+            this.maxNumberOfLines = maxNumberOfLines;
 
             // Initialize the console dimension
             consoleDimension = new Rectangle();
@@ -102,16 +114,14 @@ namespace Delta.Console
             inputText = "";
             lastInputText = "";
 
-            // Set the console font
-            consoleFont = new Font(Font.Default, new Color(200, 220, 255), HorizontalAlignment.Left, VerticalAlignment.Top);
+            // Set the console font with the given color
+            consoleFont = new Font(Font.Default, consoleFontColor, HorizontalAlignment.Left, VerticalAlignment.Top);
 
             // Create a new instance of the CommandManager
             cmdManager = new CommandManager();
 
             // Register input commands
             registerInputCommands(bindConsoleButton);
-
-            // Recalculate the dimension only when the window size has been changed
 
             // Initialize calculation
             calculateConsoleDimension();
@@ -252,7 +262,7 @@ namespace Delta.Console
         private void addHistory(string text)
         {
             // Check for max. history count
-            if (history.Count >= 20)
+            if (history.Count >= maxNumberOfLines)
             {
                 // Remove oldest entry
                 history.RemoveAt(0);
@@ -343,9 +353,9 @@ namespace Delta.Console
             fontHeight = ScreenSpace.ToQuadraticSpace(new Size(15f)).Height;
 
             // Render the console background with some distance to left, top, right and add extra height
-            consoleDimension.Left = ScreenSpace.DrawArea.Left + 0.01f;
-            consoleDimension.Top = ScreenSpace.DrawArea.Top + 0.01f;
-            consoleDimension.Width = ScreenSpace.DrawArea.Right - 0.02f;
+            consoleDimension.Left = ScreenSpace.DrawArea.Left + consoleMargin.Left;
+            consoleDimension.Top = ScreenSpace.DrawArea.Top + consoleMargin.Top;
+            consoleDimension.Width = ScreenSpace.DrawArea.Right - consoleMargin.Right;
             // Calculate all the needed height together
             consoleDimension.Height = fontHeight * (history.Count + autoCompletionCache.Count + 3);
         }

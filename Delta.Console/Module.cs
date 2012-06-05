@@ -2,6 +2,9 @@
 using Delta.Engine;
 using System.Reflection;
 using Delta.InputSystem;
+using Delta.Rendering.Basics.Materials;
+using Delta.Utilities.Datatypes;
+using Delta.Utilities.Datatypes.Advanced;
 
 namespace Delta.Console
 {
@@ -31,11 +34,36 @@ namespace Delta.Console
         /// be executed as part of the Application.Run.
         /// </summary>
         /// <param name="bindConsole">The button to open and close the console</param>
-        public Module(InputButton bindConsoleButton)
+        /// <param name="consoleMargin">The space between the screenspace and the console. Pass NULL to use the default value.</param>
+        /// <param name="consoleBackground">The console background color or material. Pass NULL to use the default value.</param>
+        /// <param name="consoleFontColor">The color for the font to display text. Pass NULL to use the default value.</param>
+        /// <param name="maxNumberOfLines">The max. number of lines that will be displayed befor the oldest entry will be deleted. Pass NULL to use the default value.</param>
+        public Module(InputButton bindConsoleButton, Margin consoleMargin, Material2DColored consoleBackground, Color consoleFontColor, int? maxNumberOfLines )
             : base("Delta.Console", typeof(Application))
         {
+
+            if (consoleMargin.Left == 0 && consoleMargin.Top == 0 && consoleMargin.Right == 0)
+            {
+                consoleMargin = new Margin() { Left = 0.01f, Top = 0.01f, Right = 0.02f };
+            }
+
+            if (consoleBackground == null)
+            {
+                consoleBackground = new Material2DColored(new Color(new Color(0, 167, 255), 0.5f));
+            }
+
+            if (consoleFontColor.PackedRGBA == 0)
+            {
+                consoleFontColor = new Color(200, 220, 255);
+            }
+
+            if (maxNumberOfLines == null)
+            {
+                maxNumberOfLines = 20;
+            }
+
             // Initialize
-            console = new Delta.Console.Console(bindConsoleButton);
+            console = new Delta.Console.Console(bindConsoleButton, consoleMargin, consoleBackground, consoleFontColor, (int)maxNumberOfLines);
             graph = new GraphManager();
 
             // Add command to the console to enable or disable the graph

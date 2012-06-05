@@ -112,7 +112,7 @@ namespace TestGame
             });
 
             // Load the module
-            var module = Factory.Create<Delta.Console.Module>(new object[] { InputButton.Pipe });
+            var module = Factory.Create<Delta.Console.Module>(new object[] { InputButton.Pipe, null, null, null, null });
             // Add our two test plots to the graph
             module.AddPlotToGraph(new TestPlotCpu());
             module.AddPlotToGraph(new TestPlotFps());
